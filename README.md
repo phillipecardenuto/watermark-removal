@@ -11,12 +11,12 @@ Even for the maximum level of aggressivity, the images/photos embedded in the PD
     All PDF stream resources that explicitly contain the information saying that it is a Watermark are removed.
 
 **Aggressivity Level 2 (Default):**
-    All Watermarks from 1 and element Graphics that appear more than once along the PDF pages are removed.
+    All Watermarks from level 1 and graphical element that appear more than once along the PDF pages are removed.
     In addition, all 'RETRACTED' words are also removed.
-    For some PDFs, this aggressivity level could remove the entire text from a Page.
+    For some few PDFs, this aggressivity level could remove the entire text from a Page.
 
 **Aggressivity Level 3:**
-    All WM from 1 and 2 and all graphical elements are removed from the PDF.
+    All WM from levels 1 and 2 and all graphical elements are removed from the PDF.
     The only change for the Retraction Watermark not to be removed with such a level of aggressivity is the Retraction Watermark embedded as an Image File.
     In this case, we will preserve the Watermark since this function is designed not to erase any image/photo from the PDF.
 
