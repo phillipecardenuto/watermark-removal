@@ -86,7 +86,7 @@ def fig_covers_entiry_page(
     page_height = int(page.mediaBox.getHeight())
     page_width = int(page.mediaBox.getWidth())
 
-    wm_operation_blocks, content = find_watermark_stack_block(page, source, [operand], aggresive=1)
+    wm_operation_blocks, content = find_watermark_stack_block(page, source, [operand], aggressive=1)
     fig_width = 0
     fig_height = 0
     for p in wm_operation_blocks:
@@ -222,7 +222,7 @@ def find_watermark_stack_block(
     page: PageObject,
     source: PdfFileReader,
     watermarks: List,
-    aggressive: int) -> Tuple(List, ContentStream):
+    aggressive: int) -> Tuple[List, ContentStream]:
     """
     Find the all blocks of instructions stacks within the 'q' 'Q'
     that the Watermark instruction is involved
