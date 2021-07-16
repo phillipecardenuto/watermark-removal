@@ -1,0 +1,3 @@
+# Make sure to install python>=3.8
+PyPDF4>=1.27
+pymupdf>=1.18
