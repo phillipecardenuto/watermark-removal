@@ -71,9 +71,9 @@ def fig_covers_entiry_page(
     page: PageObject,
     source: PdfFileReader,
     operand: str,
-    p_covered: int = 0.9) -> bool:
+    p_covered: int = 0.95) -> bool:
     """
-    Check if a figure cover more than 0.9 of a page
+    Check if a figure cover more than 0.95 of a page
     if so, the image will be considerated as watermark
 
     Args:
@@ -90,13 +90,18 @@ def fig_covers_entiry_page(
     fig_width = 0
     fig_height = 0
     for p in wm_operation_blocks:
+         # Check the cm operator found in the watermark stack block
+         # This is riscky since we are supposing that the stram PDF operations
+         # are well organized and with only one 'cm' operand in the watermark rendering stack block
+         # Fig_width and Fig_height are the scaling factor (in x and y) presented in the 
+         # current transformation matrix (CTM)
          if len(content.operations[p][0]) == 6:
             fig_width = content.operations[p][0][0]
             fig_height = content.operations[p][0][3]
             break
 
     # If the minimum percentage among the position of the figure is more than
-    # 0.9, the image is a watermark
+    # 0.95, the image is a watermark
     if min((fig_height/page_height), (fig_width / page_width) > p_covered):
         return True
     return False
@@ -151,8 +156,8 @@ def get_GS_watermark_from_pdf(
 
     So, it scans all pages from PDF File Source
     checking the number of GS operation frequency
-    in more than one page. For each GS that
-    occurs in more than one page, it admit as a
+    in more than one page. Each GS that
+    occurs in more than one page, we assume that it is a
     watermark. It works, but can cause some false-positive.
     """
     # Initialize extGstates
@@ -463,7 +468,7 @@ def fitz_solvent_watermarks(
 
             for line in cont0:
 
-                if line.startswith("/Artifact") and "/Watermark" in line:  # start of watermark
+                if line.startswith("/Artifact") and (("/Background" in line) or ("/Watermark" in line)):  # start of watermark
                     found = True  # switch on
                     continue  # and skip line
                 if found and line == "EMC":  # end of watermark
