@@ -1,4 +1,4 @@
-# PDF SOLVENT - A Solvent for PDF RETRACTION Watermarks
+# PDF SOLVENT: A Solvent for PDF RETRACTION Watermarks
 
 Removes 'RETRACTED' watermarks from Academic PDF articles.
 
