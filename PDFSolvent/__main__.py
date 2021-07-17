@@ -12,7 +12,7 @@ parser.add_argument("--mode", "-m", type=int ,nargs='?', default=2, metavar=("mo
                     help=
 """
     This program has three levels of aggressivity; as higher the level more damage it can cause to the final result.
-    Even though, even for the maximum level of aggressivity, the images/photos embedded in the PDF are preserved.  
+    Even though, even for the maximum level of aggressivity, the images/photos embedded in the PDF are preserved.
 
     Aggressivity Level 1:
         All PDF stream resources that explicitly contain the information saying that it is a Watermark are removed.
@@ -39,7 +39,7 @@ def main():
     else:
         mode = args['mode']
     remove_watermarks( input_pdf, output_pdf, mode)
-    
+
 
 if __name__ == "__main__":
     main()
