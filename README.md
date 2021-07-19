@@ -4,7 +4,7 @@
 
 This software has three levels of aggressivity; as higher the level more damage it can cause to the final result.\
 However, even for the maximum level of aggressivity, the images/photos embedded in the PDF would still be preserved. 
-  
+
 
 -- **Level 1:**
     All PDF stream resources that explicitly contain the information saying that it is a Watermark are removed.
@@ -39,6 +39,45 @@ Run Watermark remover
 ``` bash
 $ python PDFSolvent -i <PDF-input> -o <PDF-output> -m [mode of aggressivity] 
 ```
+
+
+
+### Docker Version
+
+You can build a docker with the Dockerfile
+
+```
+$ docker build -t pdf-watermark-removal .
+```
+
+OR 
+
+Pull the docker from Dockerhub
+
+```
+$ docker pull phillipecardenuto/pdf-watermark-removal
+$ docker tag phillipecardenuto/pdf-watermark-removal pdf-watermark-removal
+```
+
+
+
+Then, run the docker by:
+
+```
+$ docker --rm -v <pdf-input-dirname>:/pdf/ pdf-watermark-removal -i <pdf-input-basename> -o <pdf-output-basename> -m <mode>
+```
+
+After running this command, you should see the output PDF \<pdf-output-basename> in the same directory of the input PDF.
+
+
+
+Example:
+
+```
+docker run -it --rm -v $(realpath test):/pdf/ pdf-watermark-removal -i 10.1371_journal.pone.0003856.pdf -o output.pdf -m 1
+```
+
+​	 
 
 
 
